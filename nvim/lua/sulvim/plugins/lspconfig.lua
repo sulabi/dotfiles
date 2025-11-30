@@ -196,7 +196,12 @@ return {
 
 		vim.lsp.enable("tailwindcss")
 
+		vim.lsp.config("jdtls", {
+			settings = {
+				java = {}
+			}
+		})
+		vim.lsp.enable("jdtls")
 		-- TODO: finish lsp
-		vim.lsp.config("java_language_server", {})
 	end,
 }

@@ -47,7 +47,7 @@ return {
                 -- "eslint",
                 "marksman",
 
-				"java_language_server",
+				"jdtls",
             },
         })
 
