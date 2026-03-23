@@ -1,0 +1,279 @@
+* {
+    border: none;
+    border-radius: 0px;
+    font-family: VictorMono, Iosevka Nerd Font, Noto Sans CJK;
+    font-size: 14px;
+    font-style: normal;
+    min-height: 0;
+}
+
+window#waybar {
+    background: rgba(30, 30, 46, 0.5);
+    border-bottom: 1px solid #282828;
+    color: #f4d9e1;
+    transition: background-color 0.3s ease;
+}
+
+#workspaces {
+    background: #282828;
+    margin: 5px 5px 5px 5px;
+    padding: 0px 5px 0px 5px;
+    border-radius: 7px;
+    border: solid 0px #f4d9e1;
+    font-weight: bold;
+}
+
+#workspaces button {
+    padding: 0px 5px;
+    border-radius: 16px;
+    color: #928374;
+    transition: all 0.3s ease;
+}
+
+#workspaces button.active {
+    color: #f4d9e1;
+    background-color: transparent;
+    border-radius: 16px;
+}
+
+#workspaces button:hover {
+    background-color: #E6B9C6;
+    color: black;
+    border-radius: 16px;
+}
+
+#battery, #pulseaudio, #bluetooth, #network, #custom-randwall, #custom-launcher {
+    background: transparent;
+    padding: 5px;
+    margin: 5px;
+    border-radius: 8px;
+    border: solid 0px #f4d9e1;
+    transition: all 0.3s ease;
+}
+
+#battery:hover, #pulseaudio:hover, #bluetooth:hover, #network:hover, 
+#custom-randwall:hover, #custom-launcher:hover {
+    background: rgba(40, 40, 40, 0.5);
+}
+
+#custom-date {
+    color: #D3869B;
+}
+
+#clock {
+    background-color: #282828;
+    margin: 5px 5px 5px 15px;
+    padding: 0 10px 0 10px;
+    border-radius: 7px;
+    border: solid 0px #f4d9e1;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+}
+
+#clock:hover {
+    background-color: #3c3836;
+}
+
+#custom-power {
+    background-color: #282828;
+    border-radius: 5px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    margin-right: 5px;
+    padding: 5px 10px;
+    transition: all 0.3s ease;
+}
+
+#custom-power:hover {
+    background-color: #fb4934;
+    color: #1d2021;
+}
+
+#tray {
+    background: #282828;
+    margin: 5px 5px 5px 5px;
+    border-radius: 7px;
+    padding: 0px 5px;
+}
+
+#battery {
+    color: #9ece6a;
+}
+
+#battery.charging {
+    color: #9ece6a;
+}
+
+#battery.warning:not(.charging) {
+    background-color: #f7768e;
+    color: #24283b;
+    border-radius: 5px;
+}
+
+#battery.critical:not(.charging) {
+    background-color: #cc241d;
+    color: #fbf1c7;
+}
+
+#backlight {
+    background: transparent;
+    color: #f4d9e1;
+    border-radius: 0px;
+    margin: 5px;
+    margin-left: 0px;
+    margin-right: 0px;
+    padding: 0px 0px;
+}
+
+#network {
+    color: #f4d9e1;
+    border-radius: 8px;
+    margin-right: 5px;
+}
+
+#network.disconnected {
+    color: #928374;
+}
+
+#pulseaudio {
+    color: #f4d9e1;
+    border-radius: 8px;
+    margin-left: 0px;
+}
+
+#pulseaudio.muted {
+    background: transparent;
+    color: #928374;
+    margin-right: 10px;
+    border-radius: 8px;
+    margin-left: 0px;
+}
+
+#bluetooth {
+    color: #f4d9e1;
+}
+
+#bluetooth.disabled {
+    color: #928374;
+}
+
+#bluetooth.connected {
+    color: #8ec07c;
+}
+
+#custom-randwall {
+    color: #f4d9e1;
+    border-radius: 8px;
+    margin-right: 0px;
+}
+
+#custom-launcher {
+    background: #282828;
+    margin: 5px 5px 5px 5px;
+    padding: 0 13px 0 13px;
+    border-radius: 7px;
+    border: solid 0px #f4d9e1;
+    color: #e5809e;
+    font-size: 14px;
+    transition: all 0.3s ease;
+}
+
+#custom-launcher:hover {
+    background-color: #fb4934;
+    color: #1d2021;
+}
+
+#custom-playerctl {
+    background: #282828;
+    padding-left: 15px;
+    padding-right: 14px;
+    border-radius: 16px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    margin-left: 0px;
+    font-weight: normal;
+    font-style: normal;
+    font-size: 16px;
+}
+
+#custom-playerlabel {
+    background: transparent;
+    padding-left: 10px;
+    padding-right: 15px;
+    border-radius: 16px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    font-weight: normal;
+    font-style: normal;
+}
+
+#window {
+    background: #282828;
+    padding-left: 15px;
+    padding-right: 15px;
+    border-radius: 16px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    font-weight: normal;
+    font-style: normal;
+}
+
+#custom-wf-recorder {
+    padding: 0 20px;
+    color: #e5809e;
+    background-color: #1E1E2E;
+}
+
+#cpu {
+    background-color: #282828;
+    margin: 5px 5px 5px 5px;
+    padding: 0 10px 0 10px;
+    border-radius: 7px;
+    border: solid 0px #f4d9e1;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+}
+
+#cpu:hover {
+    background-color: #3c3836;
+}
+
+#memory {
+    background-color: #282828;
+    margin: 5px 5px 5px 5px;
+    padding: 0 10px 0 10px;
+    border-radius: 7px;
+    border: solid 0px #f4d9e1;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+}
+
+#memory:hover {
+    background-color: #3c3836;
+}
+
+#disk {
+    background-color: #282828;
+    border-radius: 16px;
+    margin: 5px;
+    margin-left: 5px;
+    margin-right: 5px;
+    padding: 0px 10px 0px 10px;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+}
+
+#disk:hover {
+    background-color: #3c3836;
+}
+
+tooltip {
+    background: #282828;
+    border: 1px solid #3c3836;
+    border-radius: 7px;
+    padding: 10px;
+}
+
+tooltip label {
+    color: #f4d9e1;
+}

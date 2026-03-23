@@ -1,0 +1,209 @@
+{
+	"position": "top",
+	"layer": "top",
+	"height": 16,
+	"margin-top": 0,
+	"margin-bottom": 0,
+	"margin-left": 0,
+	"margin-right": 0,
+	"modules-left": [
+		"niri/workspaces",
+		"hyprland/workspaces",
+		"custom/playerctl",
+		"custom/playerlabel",
+	],
+	"modules-center": ["cpu", "memory", "disk"],
+	"modules-right": [
+		"tray",
+		"custom/randwall",
+		"network",
+		"bluetooth",
+		"battery",
+		"pulseaudio",
+		"backlight",
+		"clock",
+		"custom/power",
+	],
+
+	// Modules configuration
+	"clock": {
+		"format": "  {:%H:%M}",
+		"tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
+		"format-alt": "  {:%A %d %b}",
+		"calendar": {
+			"mode": "month",
+			"mode-mon-col": 3,
+			"weeks-pos": "right",
+			"on-scroll": 1,
+			"format": {
+				"months": "<span color='#f4d9e1'><b>{}</b></span>",
+				"days": "<span color='#f4d9e1'><b>{}</b></span>",
+				"weeks": "<span color='#928374'><b>W{}</b></span>",
+				"weekdays": "<span color='#e5809e'><b>{}</b></span>",
+				"today": "<span color='#fb4934'><b><u>{}</u></b></span>",
+			},
+		},
+	},
+
+	"niri/workspaces": {
+		"format": "{icon}",
+		"on-scroll-up": "niri msg action focus-workspace-up",
+		"on-scroll-down": "niri msg action focus-workspace-down",
+	},
+
+	"hyprland/workspaces": {
+		"active-only": false,
+		"all-outputs": true,
+		"disable-scroll": false,
+		"on-scroll-up": "hyprctl dispatch workspace -1",
+		"on-scroll-down": "hyprctl dispatch workspace +1",
+		"format": "{name}",
+		"on-click": "activate",
+	},
+
+	"custom/playerctl": {
+		"format": "{icon}",
+		"return-type": "json",
+		"max-length": 64,
+		"exec": "playerctl -a metadata --format '{\"text\": \"{{artist}} - {{markup_escape(title)}}\", \"tooltip\": \"{{playerName}} : {{markup_escape(title)}}\", \"alt\": \"{{status}}\", \"class\": \"{{status}}\"}' -F",
+		"on-click-middle": "playerctl play-pause",
+		"on-click": "playerctl previous",
+		"on-click-right": "playerctl next",
+		"format-icons": {
+			"Playing": "<span foreground='#E5B9C6'>󰒮 󰐌 󰒭</span>",
+			"Paused": "<span foreground='#928374'>󰒮 󰏥 󰒭</span>",
+		},
+	},
+
+	"custom/playerlabel": {
+		"format": "<span>{}</span>",
+		"return-type": "json",
+		"max-length": 48,
+		"exec": "playerctl -a metadata --format '{\"text\": \"{{artist}} - {{markup_escape(title)}}\", \"tooltip\": \"{{playerName}} : {{markup_escape(title)}}\", \"alt\": \"{{status}}\", \"class\": \"{{status}}\"}' -F",
+		"on-click-middle": "playerctl play-pause",
+		"on-click": "playerctl previous",
+		"on-click-right": "playerctl next",
+	},
+
+	"battery": {
+		"states": {
+			"good": 95,
+			"warning": 30,
+			"critical": 15,
+		},
+		"format": "{icon}  {capacity}%",
+		"format-charging": "{capacity}% ",
+		"format-plugged": "{capacity}% ",
+		"format-alt": "{icon}  {time}",
+		"interval": 5,
+		"format-icons": ["", "", "", "", ""],
+		"tooltip-format": "{timeTo}, {capacity}%\n{power}W",
+	},
+
+	"memory": {
+		"format": "󰍛 {used}/{total} GiB",
+		"format-alt": "󰍛 {percentage}%",
+		"interval": 5,
+		"tooltip-format": "RAM: {percentage}%\nUsed: {used} GiB\nAvailable: {avail} GiB",
+	},
+
+	"cpu": {
+		"format": "󰻠 {usage}%",
+		"format-alt": "󰻠 {avg_frequency} GHz",
+		"interval": 5,
+		"tooltip-format": "CPU Usage: {usage}%\nLoad: {load}",
+	},
+
+	"disk": {
+		"format": "󰋊 {percentage_used}%",
+		"format-alt": "󰋊 {used}/{total}",
+		"interval": 30,
+		"path": "/mnt/Datos",
+		"tooltip-format": "Used: {used} / {total}\n{percentage_used}% full",
+	},
+
+	"network": {
+		"format-wifi": "󰤨",
+		"format-ethernet": "󰈀",
+		"format-linked": "󰈁",
+		"format-disconnected": "󰤭",
+		"format-alt": "󰩟 {essid}",
+		"tooltip-format-wifi": "WiFi: {essid}\nSignal: {signalStrength}%\nIP: {ipaddr}/{cidr}\n󰁞 {bandwidthDownBits}  󰁆 {bandwidthUpBits}",
+		"tooltip-format-ethernet": "Ethernet: {ifname}\nIP: {ipaddr}/{cidr}\n󰁞 {bandwidthDownBits}  󰁆 {bandwidthUpBits}",
+		"tooltip-format-disconnected": "Disconnected",
+		"on-click": "nm-connection-editor",
+		"on-click-right": "nm-applet",
+		"interval": 5,
+	},
+
+	"bluetooth": {
+		"format": "󰂯",
+		"format-on": "󰂯",
+		"format-off": "󰂲",
+		"format-disabled": "󰂲",
+		"format-connected": "󰂱 {num_connections}",
+		"tooltip-format": "{status}",
+		"tooltip-format-connected": "Connected:\n{device_enumerate}",
+		"tooltip-format-enumerate-connected": "  {device_alias} - {device_battery_percentage}%",
+		"tooltip-format-enumerate-connected-battery": "  {device_alias} - {device_battery_percentage}%",
+		"on-click": "blueman-manager",
+		"on-click-right": "rfkill toggle bluetooth",
+	},
+
+	"tray": {
+		"icon-size": 16,
+		"spacing": 5,
+	},
+
+	"backlight": {
+		"format": "{icon} {percent}%",
+		"format-icons": ["", "", "", "", "", "", "", "", ""],
+		"tooltip-format": "Brightness: {percent}%",
+		"on-scroll-up": "brightnessctl set +5%",
+		"on-scroll-down": "brightnessctl set 5%-",
+	},
+
+	"pulseaudio": {
+		"format": "{icon} {volume}%",
+		"format-muted": "󰝟",
+		"format-icons": {
+			"default": ["󰕿", "󰖀", "󰕾"],
+		},
+		"tooltip-format": "Volume: {volume}%\n{desc}",
+		"on-click": "pactl set-sink-mute @DEFAULT_SINK@ toggle",
+		"on-scroll-up": "pactl set-sink-volume @DEFAULT_SINK@ +5%",
+		"on-scroll-down": "pactl set-sink-volume @DEFAULT_SINK@ -5%",
+		"scroll-step": 5,
+		"on-click-right": "pavucontrol",
+	},
+
+	"custom/randwall": {
+		"format": "󰏘",
+		"tooltip": false,
+		"on-click": "setwallpaper -r -p",
+	},
+
+	"custom/launcher": {
+		"format": "",
+		"tooltip": false,
+		"on-click": "wofi --show drun",
+		"on-click-right": "wofi --show run",
+	},
+
+	"custom/wf-recorder": {
+		"format": "{}",
+		"interval": "once",
+		"exec": "echo ''",
+		"tooltip": false,
+		"exec-if": "pgrep 'wf-recorder'",
+		"on-click": "exec ./scripts/wlrecord.sh",
+		"signal": 8,
+	},
+
+	"custom/power": {
+		"format": "⏻",
+		"tooltip-format": "Power Menu",
+		"on-click": "wlogout",
+		"interval": 86400,
+	},
+}
