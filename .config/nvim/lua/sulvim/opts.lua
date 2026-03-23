@@ -7,6 +7,7 @@ opts.relativenumber = true
 opts.shiftwidth = 4
 opts.tabstop = 4
 opts.softtabstop = 4
+opts.laststatus = 3
 
 opts.signcolumn = "no"
 opts.clipboard = "unnamedplus"

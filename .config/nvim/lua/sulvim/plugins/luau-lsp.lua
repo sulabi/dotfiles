@@ -36,7 +36,10 @@ return {
 	},
 
 	config = function(_, opts)
-		local definition_files = vim.fn.glob("src/*.d.luau", true, true)
+		local definition_files = {}
+		for i, v in pairs(vim.fn.glob("src/*.d.luau", true, true)) do
+			definition_files["@" .. v] = v
+		end
 
 		opts.types = {
 			definition_files = definition_files

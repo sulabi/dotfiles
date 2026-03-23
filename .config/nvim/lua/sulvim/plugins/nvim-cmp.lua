@@ -24,6 +24,7 @@ return {
 		local cmp = require("cmp")
 		-- local luasnip = require("luasnip")
 		local has_luasnip, luasnip = pcall(require, "luasnip")
+		local has_copilot, copilot_suggestion = pcall(require, "copilot.suggestion")
 		local lspkind = require("lspkind")
 		local colorizer = require("tailwindcss-colorizer-cmp").formatter
 
@@ -219,14 +220,16 @@ return {
 			},
 			-- autocompletion sources
 			sources = cmp.config.sources({
-				{ name = "luasnip" }, -- snippets
-				{ name = "lazydev" },
-				{ name = "nvim_lsp" },
-				{ name = "buffer" }, -- text within current buffer
-				{ name = "path" }, -- file system paths
-				{ name = "tailwindcss-colorizer-cmp" },
+				{ name = "copilot", group_index = 2 }, -- copilot completions
+				{ name = "luasnip", group_index = 1 }, -- snippets
+				{ name = "lazydev", group_index = 1 },
+				{ name = "nvim_lsp", group_index = 1 },
+				{ name = "buffer", group_index = 2 }, -- text within current buffer
+				{ name = "path", group_index = 2 }, -- file system paths
+				{ name = "tailwindcss-colorizer-cmp", group_index = 2 },
 				{
 					name = "spell", -- for markdown spellchecks completions
+					group_index = 2,
 					option = {
 						enable_in_context = function()
 							local ft = vim.bo.filetype
@@ -275,6 +278,9 @@ return {
 					if cmp.visible() then
 						local entry = cmp.get_selected_entry()
 						confirm(entry)
+					-- Accept Copilot suggestion if visible and cmp not visible
+					elseif has_copilot and copilot_suggestion.is_visible() then
+						copilot_suggestion.accept()
 					else
 						fallback()
 					end
@@ -312,6 +318,9 @@ return {
 						else
 							cmp.select_next_item()
 						end
+					-- Accept Copilot suggestion if visible and cmp not visible
+					elseif has_copilot and copilot_suggestion.is_visible() then
+						copilot_suggestion.accept()
 					elseif has_luasnip and luasnip.expand_or_locally_jumpable() then
 						luasnip.expand_or_jump()
 					elseif in_whitespace() then
@@ -334,6 +343,7 @@ return {
 						luasnip = "[LuaSnip]",
 						nvim_lua = "[Lua]",
 						latex_symbols = "[LaTeX]",
+						copilot = "[Copilot]",
 					})[entry.source.name]
 
 					-- use lspkind and tailwindcss-colorizer-cmp for additional formatting
