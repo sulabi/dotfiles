@@ -1,0 +1,17 @@
+#!/bin/bash
+
+count=$(checkupdates | wc -l)
+
+if [[ $count != 0 ]]; then
+	if [[ $count == 1 ]]; then
+		message="$count update available"
+	else
+		message="$count updates available"
+	fi
+	capture=$(fyi --expire-time=10000 --app-name="Niri" --icon=$HOME/.config/fastfetch/pngs/niri.png --action=Update:Update "$message" "The balance shifts, Niri master")
+	if [[ "$capture" == "action=Update" ]]; then
+		kitty -e yay -Syu
+	fi
+else
+	capture=$(fyi --transient --expire-time=3000 --app-name="Niri" --icon=$HOME/.config/fastfetch/pngs/niri.png "No updates available" "All is in Balance")
+fi

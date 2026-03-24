@@ -30,5 +30,6 @@ case ":$PATH:" in
 esac
 # pnpm end
 export PATH="$HOME/.npm-global/bin:$PATH"
+export PATH="$HOME/.scripts:$PATH"
 
 eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv zsh)"
