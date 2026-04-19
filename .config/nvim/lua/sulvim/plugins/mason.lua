@@ -47,6 +47,7 @@ return {
                 -- "eslint",
                 "marksman",
 
+				"pyright",
 				"jdtls",
             },
         })

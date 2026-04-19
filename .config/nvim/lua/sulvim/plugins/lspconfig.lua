@@ -202,6 +202,9 @@ return {
 			}
 		})
 		vim.lsp.enable("jdtls")
+
+		vim.lsp.enable("pyright")
+
 		-- TODO: finish lsp
 	end,
 }
