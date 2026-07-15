@@ -6,4 +6,3 @@ if ! command -v stow &> /dev/null; then
 fi
 
 stow --verbose --target=$HOME .
-

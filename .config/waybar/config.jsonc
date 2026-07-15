@@ -180,7 +180,7 @@
 	"custom/randwall": {
 		"format": "󰏘",
 		"tooltip": false,
-		"on-click": "setwallpaper -r -p",
+		"on-click": "wallpaper set -r -p",
 	},
 
 	"custom/launcher": {

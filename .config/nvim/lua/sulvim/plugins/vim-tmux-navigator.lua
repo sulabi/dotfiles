@@ -13,7 +13,6 @@ local vim_tmux_navigator = {
 		{ "<C-j>", "<cmd><C-U>TmuxNavigateDown<cr>" },
 		{ "<C-k>", "<cmd><C-U>TmuxNavigateUp<cr>" },
 		{ "<C-l>", "<cmd><C-U>TmuxNavigateRight<cr>" },
-		{ "<C-\\>", "<cmd><C-U>TmuxNavigatePrevious<cr>" },
 	},
 
 	config = function() end,
