@@ -1,17 +1,17 @@
 local comment = {
-	"numToStr/Comment.nvim",
+	{ "numToStr/Comment.nvim" },
 
 	opts = {
 		toggler = {
 			line = "<leader>/",
-			block = "<leader>;"
+			block = "<leader>;",
 		},
 
 		opleader = {
 			line = "<leader>/",
-			block = "<leader>;"
-		}
-	}
+			block = "<leader>;",
+		},
+	},
 }
 
 return comment

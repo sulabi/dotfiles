@@ -1,8 +1,6 @@
 local treesitter = {
-	"nvim-treesitter/nvim-treesitter",
-	branch = "master",
-	lazy = false,
-	build = ":TSUpdate",
+	{ { src = "https://github.com/nvim-treesitter/nvim-treesitter", branch = "master" } },
+	-- build = ":TSUpdate",
 
 	opts = {
 		ensure_installed = {
@@ -21,6 +19,7 @@ local treesitter = {
 			"luau",
 			"tsx",
 			"typescript",
+			"dockerfile",
 		},
 
 		sync_install = true,
@@ -43,9 +42,18 @@ local treesitter = {
 		additional_vim_regex_highlighting = false,
 	},
 
-	config = function(_, opts)
-		return require("nvim-treesitter.configs").setup(opts)
-	end
+	config = function(Treesitter, opts)
+		Treesitter.install(opts.ensure_installed)
+		Treesitter.setup(opts)
+	end,
+
+	autocmds = {
+		{
+			event = "FileType",
+			pattern = { "<filetype>" },
+			callback = function(args) vim.treesitter.start() end,
+		},
+	},
 }
 
 return treesitter

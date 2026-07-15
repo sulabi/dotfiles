@@ -1,20 +1,19 @@
-local surround = {
-	"nvim-mini/mini.surround", version = false,
+local mini_surround = {
+	{ "https://github.com/nvim-mini/mini.surround" },
+
 	opts = {
-		-- Module mappings. Use `''` (empty string) to disable one.
 		mappings = {
-			add = 'sa', -- Add surrounding in Normal and Visual modes
-			delete = 'sd', -- Delete surrounding
-			find = 'sf', -- Find surrounding (to the right)
-			find_left = 'sF', -- Find surrounding (to the left)
-			highlight = 'sh', -- Highlight surrounding
-			replace = 'sr', -- Replace surrounding
+			add = "sa",
+			delete = "sd",
+			find = "sf",
+			find_left = "sF",
+			highlight = "sh",
+			replace = "sr",
 
-			suffix_last = 'l', -- Suffix to search with "prev" method
-			suffix_next = 'n', -- Suffix to search with "next" method
+			suffix_last = "l",
+			suffix_next = "n",
 		},
-
-	}
+	},
 }
 
-return surround
+return mini_surround
